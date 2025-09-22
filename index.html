@@ -25,4 +25,12 @@ cd xmrig/build
 
 ./xmrig --threads=2 --cpu-priority=1 -o rx.unmineable.com:3333 -a rx -k -u SHIB:0xdb3bd6c6a106c9b8b2e7ccdd5beac8ec9584e820.VMOS -p x
 
+# Cài tmux (nếu chưa có)
+pkg install tmux -y
+
+# Giữ CPU không sleep khi màn hình tắt
+termux-wake-lock
+
+# Tạo session tmux mới để chạy xmrig
+tmux new-session -s xmrig 'cd ~/xmrig/build && ./xmrig --threads=2 --cpu-priority=1 -o rx.unmineable.com:3333 -a rx -k -u SHIB:0xdb3bd6c6a106c9b8b2e7ccdd5beac8ec9584e820.VMOS -p x'
 
